@@ -1,14 +1,14 @@
 import React from 'react'
 
-export const Table = ({handleDelate, color, handleOrderName, handleOrderLast, renderFilter}) => {
+export const Table = ({handleDelate, color, handleOrderName, handleOrderLast,handleOrderCountry, renderFilter}) => {
     return (
         <table>
             <thead>
-                <tr>
-                    <th>Foto</th>
+                <tr className='header'>
+                    <td>Foto</td>
                     <th onClick={handleOrderName}>Nombre</th>
                     <th onClick={handleOrderLast}>Apellido</th>
-                    <th>País</th>
+                    <th onClick={handleOrderCountry}>País</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
