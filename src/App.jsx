@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Table } from "../Components/Table"
-
 
 const URL = "https://randomuser.me/api/?results=30"
 function App() {
@@ -21,7 +19,7 @@ function App() {
     usersBackup.current = data.results
   }
   // Función para ordenar la lista de usuarios
-  const handleOrderCountry = () => {setOrderFilter(!orderFilter)}
+  const handleOrderCountry = () => { setOrderFilter(!orderFilter) }
 
   // Función para ordenar la lista de usuarios por nombre
   const handleOrder = (filter) => {
@@ -39,10 +37,10 @@ function App() {
     if (orderFilter) {
       return sortedUsers.sort((a, b) => a.location.country.localeCompare(b.location.country));
     }
-    return sortedUsers; 
+    return sortedUsers;
   }, [users, orderFilter]);
 
-// funcion a renderizar la lista de usuarios filtrados por input
+  // funcion a renderizar la lista de usuarios filtrados por input
   const renderFilter = useMemo(() => {
     return orderedUsers.filter((user) => {
       if (input === "") {
@@ -83,12 +81,32 @@ function App() {
         <input type="text" placeholder="Ingresa País: " onChange={(event) => setInput(event.target.value)} />
         <p>Numero de Usuarios: {users.length}</p>
       </div>
-      <Table
-        handleDelate={handleDelate}
-        handleOrderCountry={handleOrderCountry}
-        handleOrder={handleOrder}
-        color={color}
-        renderFilter={renderFilter} />
+      <table>
+        <thead>
+          <tr className='header'>
+            <th>Foto</th>
+            <th onClick={() => handleOrder("name")}>Nombre</th>
+            <th onClick={() => handleOrder("lastname")}>Apellido</th>
+            <th onClick={handleOrderCountry}>País</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            renderFilter.map((users, index) => (
+              <tr key={users.login.uuid} className={color ? index % 2 == 0 ? "negro" : "gris" : ""}>
+                <td>
+                  <img src={users.picture.thumbnail} alt="" />
+                </td>
+                <td>{users.name.first}</td>
+                <td>{users.name.last}</td>
+                <td>{users.location.country}</td>
+                <td><button onClick={() => handleDelate(users.login.uuid)}>Eliminar</button></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     </>
   )
 }
