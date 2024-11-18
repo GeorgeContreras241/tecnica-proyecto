@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Table = ({handleDelate, handleOrderCountry, handleOrder, color, renderFilter}) => {
+export const Table = ({handleDelate, handleOrder, color, renderFilter}) => {
     return (
         <table>
             <thead>
@@ -8,7 +8,7 @@ export const Table = ({handleDelate, handleOrderCountry, handleOrder, color, ren
                     <th>Foto</th>
                     <th onClick={() => handleOrder("name")}>Nombre</th>
                     <th onClick={() => handleOrder("last")}>Apellido</th>
-                    <th onClick={handleOrderCountry}>País</th>
+                    <th>País</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
