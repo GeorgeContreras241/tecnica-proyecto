@@ -8,7 +8,7 @@ export const Table = ({handleDelate, handleOrder,color,handleOrderCountry, rende
                     <th>Foto</th>
                     <th onClick={() => handleOrder("name")}>Nombre</th>
                     <th onClick={() => handleOrder("lastname")}>Apellido</th>
-                    <th onClick={() => handleOrderCountry()}>País</th>
+                    <th>País</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
