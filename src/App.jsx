@@ -23,14 +23,16 @@ function App() {
   // Función para ordenar la lista de usuarios
   const handleOrderCountry = () => {setOrderFilter(!orderFilter)}
 
-  // Función para ordenar la lista de por name, last
-  const handleOrder = (accion) => {
+
+  const handleOrderName = () => {
     const newDate = [...users].sort((a, b) => {
-      if (accion === "name") {
-        return a.name.first.localeCompare(b.name.first)
-      } else if (accion === "last") {
-        return a.name.last.localeCompare(b.name.last)
-      }
+      return a.name.first.localeCompare(b.name.first)
+    })
+    setUsers(newDate)
+  }
+  const handleOrderLast = () => {
+    const newDate = [...users].sort((a, b) => {
+      return a.name.last.localeCompare(b.name.last)
     })
     setUsers(newDate)
   }
@@ -89,7 +91,8 @@ function App() {
         handleDelate={handleDelate}
         handleOrderCountry={handleOrderCountry}
         color={color}
-        handleOrder={handleOrder}
+        handleOrderName={handleOrderName}
+        handleOrderLast={handleOrderLast}
         renderFilter={renderFilter} />
     </>
   )
