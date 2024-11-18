@@ -23,19 +23,15 @@ function App() {
   // Función para ordenar la lista de usuarios
   const handleOrderCountry = () => {setOrderFilter(!orderFilter)}
 
-
-  const handleOrderName = () => {
-    const newDate = [...users].sort((a, b) => {
-      return a.name.first.localeCompare(b.name.first)
-    })
-    setUsers(newDate)
-  }
-  const handleOrderLast = () => {
-    const newDate = [...users].sort((a, b) => {
-      return a.name.last.localeCompare(b.name.last)
-    })
-    setUsers(newDate)
-  }
+  // Función para ordenar la lista de usuarios por nombre
+  const handleOrder = (filter) => {
+    const newOrder = [...users].sort((a, b) => {
+      if (filter === "name") return a.name.first.localeCompare(b.name.first);
+      if (filter === "lastname") return a.name.last.localeCompare(b.name.last);
+      if (filter === "country") return a.location.country.localeCompare(b.location.country);
+    });
+    setUsers(newOrder);
+  };
 
   // función para Ordenar la lista por país mediante boton
   const orderedUsers = useMemo(() => {
@@ -90,9 +86,8 @@ function App() {
       <Table
         handleDelate={handleDelate}
         handleOrderCountry={handleOrderCountry}
+        handleOrder={handleOrder}
         color={color}
-        handleOrderName={handleOrderName}
-        handleOrderLast={handleOrderLast}
         renderFilter={renderFilter} />
     </>
   )
