@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 
-const URL = "https://randomuser.me/api/?results=10"
+const URL = "https://randomuser.me/api/?results=100"
 function App() {
   const [users, setUsers] = useState([])
   const [userSort, setUserSort] = useState(false)
