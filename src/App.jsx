@@ -35,7 +35,6 @@ function App() {
     apiCall()
   }, [])
   const filteredUsers = useMemo(() => {
-    console.log("filtrando")
     return input !== ""?
       users.filter((user) => user.location.country.toLowerCase().includes(input.toLowerCase()))
       : users
